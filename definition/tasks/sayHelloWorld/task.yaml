@@ -9,13 +9,14 @@ metadata:
     alauda.io/description.en: HelloWorld        # 描述信息， 目前版本在页面上不会显示
     alauda.io/readme.zh-CN: HelloWorld          # 详细说明信息， 目前版本在页面上不会显示
     alauda.io/readme.en: HelloWorld             # 详细说明信息， 目前版本在页面上不会显示
-    alauda.io/version: v0.1                     # 版本信息， 只有变更， 才能更新 模板。必须以 v开头
+    alauda.io/version: v0.1.1                     # 版本信息， 只有变更， 才能更新 模板。必须以 v开头
   labels:
     catgory: CI                                 # 分类信息，目前版本不会在页面显示
 spec:
   engine: gotpl                                 # 固定值
   body: |+                                      # 核心的实现逻辑， 通过 gotemplate进行渲染
       echo "hello {{.guesterName}}"             # {{.guesterName}} 将会接受用户 提交过来的 guesterName 的值，进行替换
+      echo "hello {{.guester2Name}}"
   arguments:                                    # task 模板的参数信息
     - name: "guesterName"
       schema:
@@ -27,3 +28,13 @@ spec:
           en: "guster name"
       required: true
       default: "程静涛"
+    - name: "guester2Name"
+      schema:
+        type: string
+      display:
+        type: string
+        name:
+          zh-CN: "来访人2名称"
+          en: "guster name"
+      required: true
+      default: "庞建宏"

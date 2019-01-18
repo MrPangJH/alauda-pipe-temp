@@ -9,7 +9,7 @@ metadata:
     alauda.io/description.en: Sync image template. Synchronize a Image tag from the source repository to the target repository. If the source image or target image repository is a private repository (intranet address), ensure that Jenkins services are available in the same network.
     alauda.io/readme.zh-CN: 
     alauda.io/readme.en: 
-    alauda.io/version: v0.1.1
+    alauda.io/version: v0.1.2
     alauda.io/style.icon: 
   labels:
     category: sayHelloWorld
@@ -40,4 +40,15 @@ spec:
             name:
               zh-CN: "来访人名称"
               en: "guester name"
+          required: true
+        - name: guester2Name
+          schema:
+            type: string
+          binding:
+            - sayHelloWorld.args.guester2Name
+          display:
+            type: string
+            name:
+              zh-CN: "来访人名称"
+              en: "guester 2 name"
           required: true
