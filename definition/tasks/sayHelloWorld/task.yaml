@@ -1,0 +1,29 @@
+apiVersion: devops.alauda.io/v1alpha1   # 固定值， 表达版本
+kind: PipelineTaskTemplate    #固定值
+metadata:
+  name: sayHelloWorld         # task template的名称， 可以任意取， 但需要遵循我们平台的资源名称的规则， 不要含有特殊字符。定了之后， 不能改变。
+  annotations:
+    alauda.io/displayName.zh-CN: HelloWorld     # 显示名称， 目前版本在页面上不会显示
+    alauda.io/displayName.en: HelloWorld        # 显示名称， 目前版本在页面上不会显示
+    alauda.io/description.zh-CN: HelloWorld     # 描述信息， 目前版本在页面上不会显示
+    alauda.io/description.en: HelloWorld        # 描述信息， 目前版本在页面上不会显示
+    alauda.io/readme.zh-CN: HelloWorld          # 详细说明信息， 目前版本在页面上不会显示
+    alauda.io/readme.en: HelloWorld             # 详细说明信息， 目前版本在页面上不会显示
+    alauda.io/version: v0.1                     # 版本信息， 只有变更， 才能更新 模板。必须以 v开头
+  labels:
+    catgory: CI                                 # 分类信息，目前版本不会在页面显示
+spec:
+  engine: gotpl                                 # 固定值
+  body: |+                                      # 核心的实现逻辑， 通过 gotemplate进行渲染
+      echo "hello {{.guesterName}}"             # {{.guesterName}} 将会接受用户 提交过来的 guesterName 的值，进行替换
+  arguments:                                    # task 模板的参数信息
+    - name: "guesterName"
+      schema:
+        type: string
+      display:
+        type: string
+        name:
+          zh-CN: "来访人名称"
+          en: "guster name"
+      required: true
+      default: "程静涛"
