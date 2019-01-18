@@ -34,7 +34,7 @@ spec:
           schema:
             type: string
           binding:
-            - sayHelloWorld.args.sayHelloWorld
+            - sayHelloWorld.args.guesterName
           display:
             type: string
             name:
